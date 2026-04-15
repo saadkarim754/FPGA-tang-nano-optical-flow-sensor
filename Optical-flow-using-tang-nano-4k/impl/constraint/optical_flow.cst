@@ -1,0 +1,72 @@
+//============================================================================
+// Pin Constraints for Tang Nano 4K — Optical Flow Co-Processor
+// Device: GW1NSR-LV4CQN48PC6/I5
+// Board: Sipeed Tang Nano 4K
+//
+// Mapped EXACTLY according to the official Tang Nano 4K Pinout
+// including proper Bank Voltage domains (Bank 3 is 1.8V hardware locked)
+//============================================================================
+
+// ---- Clock & Reset ----
+// 27MHz crystal natively on pin 45 (Bank 1, 3.3V)
+IO_LOC  "clk_27m"      45;
+IO_PORT "clk_27m"      IO_TYPE=LVCMOS33;
+
+// User Key 1 on pin 14 (Bank 2, 2.5V/3.3V compatible)
+IO_LOC  "btn_reset_n"  14;
+IO_PORT "btn_reset_n"  IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// ---- LED ----
+// MODE/LED is on pin 10 (Bank 1, 3.3V)
+IO_LOC  "led"          10;
+IO_PORT "led"          IO_TYPE=LVCMOS33 DRIVE=8;
+
+// ---- DVP Camera Interface (OV2640 FPC Connector) ----
+// DVP Data bus (D[9:2] from sensor maps to dvp_d[7:0] internally)
+// PIXDATA9 and 8 are in Bank 1 (3.3V)
+IO_LOC  "dvp_d[7]"     40;  // PIXDATA9
+IO_LOC  "dvp_d[6]"     39;  // PIXDATA8
+IO_PORT "dvp_d[7]"     IO_TYPE=LVCMOS33;
+IO_PORT "dvp_d[6]"     IO_TYPE=LVCMOS33;
+
+// PIXDATA7 to 2 are physically in Bank 3 (Locked to 1.8V!!)
+IO_LOC  "dvp_d[5]"     23;  // PIXDATA7
+IO_LOC  "dvp_d[4]"     16;  // PIXDATA6
+IO_LOC  "dvp_d[3]"     18;  // PIXDATA5
+IO_LOC  "dvp_d[2]"     20;  // PIXDATA4
+IO_LOC  "dvp_d[1]"     19;  // PIXDATA3
+IO_LOC  "dvp_d[0]"     17;  // PIXDATA2
+// MUST BE LVCMOS18 to satisfy PNR Bank constraints!
+IO_PORT "dvp_d[5]"     IO_TYPE=LVCMOS18;
+IO_PORT "dvp_d[4]"     IO_TYPE=LVCMOS18;
+IO_PORT "dvp_d[3]"     IO_TYPE=LVCMOS18;
+IO_PORT "dvp_d[2]"     IO_TYPE=LVCMOS18;
+IO_PORT "dvp_d[1]"     IO_TYPE=LVCMOS18;
+IO_PORT "dvp_d[0]"     IO_TYPE=LVCMOS18;
+
+
+// Sync signals (All Bank 1, 3.3V)
+IO_LOC  "dvp_pclk"     41;  // DVP_PCLK
+IO_LOC  "dvp_vsync"    43;  // DVP_VSYNC
+IO_LOC  "dvp_href"     42;  // DVP_HSYNC
+IO_PORT "dvp_pclk"     IO_TYPE=LVCMOS33;
+IO_PORT "dvp_vsync"    IO_TYPE=LVCMOS33;
+IO_PORT "dvp_href"     IO_TYPE=LVCMOS33;
+
+// SCCB / I2C (All Bank 1, 3.3V)
+IO_LOC  "dvp_scl"      44;  // CAM_SCL
+IO_LOC  "dvp_sda"      46;  // CAM_SDA
+IO_PORT "dvp_scl"      IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "dvp_sda"      IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// Note: dvp_pwdn and dvp_rst_n are removed because they are hardwired 
+// to 3.3V and GND on the Tang Nano 4K board and do not route to the FPGA.
+
+// ---- UART ----
+// Moved UART to pins 31 and 32 (Bank 0, 3.3V) which are standard general-purpose 
+// header pins free from any dedicated Flash/DONE multiplexing!
+IO_LOC  "uart_tx"      27;
+IO_PORT "uart_tx"      IO_TYPE=LVCMOS33 DRIVE=8;
+
+IO_LOC  "uart_rx"      28;
+IO_PORT "uart_rx"      IO_TYPE=LVCMOS33 PULL_MODE=UP;

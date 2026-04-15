@@ -1,0 +1,25 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW1NSR-4C" pn="GW1NSR-LV4CQN48PC6/I5">gw1nsr4c-000</Device>
+    <FileList>
+        <File path="src/top.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_empu/gowin_empu.v" type="file.verilog" enable="1"/>
+        <File path="src/dvp/dvp_receiver.v" type="file.verilog" enable="1"/>
+        <File path="src/dvp/sccb_master.v" type="file.verilog" enable="1"/>
+        <File path="src/image/grayscale_converter.v" type="file.verilog" enable="1"/>
+        <File path="src/image/line_buffer.v" type="file.verilog" enable="1"/>
+        <File path="src/feature/fast_detector.v" type="file.verilog" enable="1"/>
+        <File path="src/feature/feature_store.v" type="file.verilog" enable="1"/>
+        <File path="src/bridge/ahb_feature_slave.v" type="file.verilog" enable="1"/>
+        <File path="src/bridge/frame_sync.v" type="file.verilog" enable="1"/>
+        <File path="src/bridge/uart_tx.v" type="file.verilog" enable="1"/>
+        <File path="src/bridge/i2c_master.v" type="file.verilog" enable="1"/>
+        <File path="src/bridge/camera_init.v" type="file.verilog" enable="1"/>
+        <File path="src/bridge/fpga_debugger.v" type="file.verilog" enable="1"/>
+        <File path="impl/constraint/optical_flow.cst" type="file.cst" enable="1"/>
+        <File path="impl/constraint/optical_flow.sdc" type="file.sdc" enable="1"/>
+    </FileList>
+</Project>

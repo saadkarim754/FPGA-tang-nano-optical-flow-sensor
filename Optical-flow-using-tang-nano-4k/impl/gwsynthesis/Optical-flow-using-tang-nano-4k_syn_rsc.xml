@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="top" Register="173" Lut="309" Bsram="8" T_Register="1425(173)" T_Alu="89(0)" T_Lut="1368(309)" T_Bsram="10(8)">
+ <SubModule name="u_camera_init" Register="51" Alu="5" Lut="135" T_Register="97(51)" T_Alu="5(5)" T_Lut="213(135)">
+  <SubModule name="u_i2c" Register="46" Lut="78" T_Register="46(46)" T_Lut="78(78)"/>
+ </SubModule>
+ <SubModule name="u_dvp_receiver" Register="49" Lut="40" T_Register="49(49)" T_Lut="40(40)"/>
+ <SubModule name="u_line_buffer" Register="235" Lut="32" T_Register="269(235)" T_Alu="32(0)" T_Lut="34(32)" T_Bsram="2(0)">
+  <SubModule name="u_packed_4" Register="17" Alu="16" Lut="1" Bsram="1" T_Register="17(17)" T_Alu="16(16)" T_Lut="1(1)" T_Bsram="1(1)"/>
+  <SubModule name="u_packed_2" Register="17" Alu="16" Lut="1" Bsram="1" T_Register="17(17)" T_Alu="16(16)" T_Lut="1(1)" T_Bsram="1(1)"/>
+ </SubModule>
+ <SubModule name="u_fast_detector" Register="92" Alu="14" Lut="192" T_Register="92(92)" T_Alu="14(14)" T_Lut="192(192)"/>
+ <SubModule name="u_frame_sync" Register="23" Alu="15" Lut="10" T_Register="23(23)" T_Alu="15(15)" T_Lut="10(10)"/>
+ <SubModule name="u_feature_store" Register="603" Lut="351" T_Register="603(603)" T_Lut="351(351)"/>
+ <SubModule name="u_ahb_slave" Register="53" Lut="73" T_Register="53(53)" T_Lut="73(73)"/>
+ <SubModule name="u_hw_uart" Register="30" Lut="50" T_Register="30(30)" T_Lut="50(50)"/>
+ <SubModule name="u_debugger" Register="36" Alu="23" Lut="96" T_Register="36(36)" T_Alu="23(23)" T_Lut="96(96)"/>
+</Module>

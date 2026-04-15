@@ -1,0 +1,80 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\top.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\dvp\dvp_receiver.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\dvp\sccb_master.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\image\grayscale_converter.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\image\line_buffer.v'
+WARN  (EX3792) : Literal value 'd512 truncated to fit in 9 bits("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\image\line_buffer.v":141)
+WARN  (EX3792) : Literal value 'd512 truncated to fit in 9 bits("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\image\line_buffer.v":178)
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\feature\fast_detector.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\feature\feature_store.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\ahb_feature_slave.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\frame_sync.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\uart_tx.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\i2c_master.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\camera_init.v'
+Analyzing Verilog file 'E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\fpga_debugger.v'
+WARN  (EX3073) : Port 'gpio' remains unconnected for this instance("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\top.v":310)
+Compiling module 'top'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\top.v":7)
+Compiling module 'camera_init'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\camera_init.v":5)
+Compiling module 'i2c_master'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\i2c_master.v":6)
+Compiling module 'dvp_receiver'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\dvp\dvp_receiver.v":4)
+Compiling module 'line_buffer'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\image\line_buffer.v":6)
+Compiling module 'line_packed_delay_4x'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\image\line_buffer.v":128)
+Extracting RAM for identifier 'mem'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\image\line_buffer.v":138)
+Compiling module 'line_packed_delay_2x'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\image\line_buffer.v":167)
+Extracting RAM for identifier 'mem'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\image\line_buffer.v":175)
+WARN  (EX3670) : Actual bit length 392 differs from formal bit length 245 for port 'window_flat'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\top.v":87)
+Compiling module 'fast_detector'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\feature\fast_detector.v":10)
+WARN  (EX3670) : Actual bit length 392 differs from formal bit length 245 for port 'window_flat'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\top.v":107)
+Compiling module 'frame_sync'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\frame_sync.v":5)
+Compiling module 'feature_store'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\feature\feature_store.v":12)
+Extracting RAM for identifier 'buf_a'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\feature\feature_store.v":96)
+Extracting RAM for identifier 'buf_b'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\feature\feature_store.v":106)
+Compiling module 'ahb_feature_slave'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\ahb_feature_slave.v":14)
+WARN  (EX3670) : Actual bit length 5 differs from formal bit length 8 for port 'fast_threshold'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\top.v":200)
+Compiling module 'uart_tx'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\uart_tx.v":5)
+Compiling module 'fpga_debugger'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\fpga_debugger.v":6)
+Extracting RAM for identifier 'char_rom'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\bridge\fpga_debugger.v":25)
+Compiling module '**'("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+NOTE  (EX0101) : Current top module is "top"
+[5%] Running netlist conversion ...
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio0" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio1" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio2" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio3" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio4" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio5" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio6" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio7" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio8" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio9" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio10" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio11" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio12" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio13" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio14" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "gpio15" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "u_i2c_scl" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+WARN  (CV0023) : Sweep user defined iobuf instance "u_i2c_sda" with dangling iopin("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+WARN  (NL0002) : The module "GW_GPIO" instantiated to "u_GW_GPIO" is swept in optimizing("E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\src\gowin_empu\gowin_empu.v":1911)
+[95%] Generate netlist file "E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\impl\gwsynthesis\Optical-flow-using-tang-nano-4k.vg" completed
+[100%] Generate report file "E:\Antigravity-fun\FPGA-tang-nano-optical-flow-sensor\Optical-flow-using-tang-nano-4k\impl\gwsynthesis\Optical-flow-using-tang-nano-4k_syn.rpt.html" completed
+GowinSynthesis finish
