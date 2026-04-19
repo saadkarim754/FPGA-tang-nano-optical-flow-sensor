@@ -230,6 +230,8 @@ module top (
         .uart_tx_data     (hw_tx_data),
         .uart_tx_start    (hw_tx_start),
         .uart_tx_busy     (hw_tx_busy),
+        .dvp_pclk         (dvp_pclk),
+        .dvp_vsync        (dvp_vsync),
         .handover_to_mcu  (hw_handover)
     );
     

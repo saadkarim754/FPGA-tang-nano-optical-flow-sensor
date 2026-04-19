@@ -9,7 +9,7 @@
   "SubInsts" : [
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 246,
+    "InstLine" : 248,
     "InstName" : "u_empu",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/gowin_empu/gowin_empu.v",
     "ModuleLine" : 9,

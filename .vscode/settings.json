@@ -1,0 +1,9 @@
+{
+  "idf.currentSetup": "C:\\Users\\ABID COMPUTERS\\esp\\v5.5.1\\esp-idf",
+  "clangd.path": "E:\\esp-idf\\Espressif\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=e:\\Antigravity-fun\\FPGA-tang-nano-optical-flow-sensor\\build"
+  ]
+}
