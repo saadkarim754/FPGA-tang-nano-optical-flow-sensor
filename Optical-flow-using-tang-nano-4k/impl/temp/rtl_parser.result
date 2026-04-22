@@ -9,7 +9,7 @@
   "SubInsts" : [
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 248,
+    "InstLine" : 297,
     "InstName" : "u_empu",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/gowin_empu/gowin_empu.v",
     "ModuleLine" : 9,
@@ -17,7 +17,7 @@
    },
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 41,
+    "InstLine" : 52,
     "InstName" : "u_camera_init",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/bridge/camera_init.v",
     "ModuleLine" : 5,
@@ -35,7 +35,7 @@
    },
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 57,
+    "InstLine" : 68,
     "InstName" : "u_dvp_receiver",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/dvp/dvp_receiver.v",
     "ModuleLine" : 4,
@@ -43,7 +43,7 @@
    },
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 80,
+    "InstLine" : 91,
     "InstName" : "u_line_buffer",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/image/line_buffer.v",
     "ModuleLine" : 6,
@@ -69,7 +69,7 @@
    },
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 102,
+    "InstLine" : 113,
     "InstName" : "u_fast_detector",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/feature/fast_detector.v",
     "ModuleLine" : 10,
@@ -77,7 +77,7 @@
    },
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 123,
+    "InstLine" : 134,
     "InstName" : "u_frame_sync",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/bridge/frame_sync.v",
     "ModuleLine" : 5,
@@ -85,7 +85,7 @@
    },
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 142,
+    "InstLine" : 153,
     "InstName" : "u_feature_store",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/feature/feature_store.v",
     "ModuleLine" : 12,
@@ -93,15 +93,15 @@
    },
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 184,
+    "InstLine" : 206,
     "InstName" : "u_ahb_slave",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/bridge/ahb_feature_slave.v",
-    "ModuleLine" : 14,
+    "ModuleLine" : 18,
     "ModuleName" : "ahb_feature_slave"
    },
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 216,
+    "InstLine" : 246,
     "InstName" : "u_hw_uart",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/bridge/uart_tx.v",
     "ModuleLine" : 5,
@@ -109,7 +109,7 @@
    },
    {
     "InstFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/top.v",
-    "InstLine" : 225,
+    "InstLine" : 255,
     "InstName" : "u_debugger",
     "ModuleFile" : "E:/Antigravity-fun/FPGA-tang-nano-optical-flow-sensor/Optical-flow-using-tang-nano-4k/src/bridge/fpga_debugger.v",
     "ModuleLine" : 6,

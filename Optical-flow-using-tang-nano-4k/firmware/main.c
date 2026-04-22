@@ -26,6 +26,10 @@
 #define FEAT_THRESHOLD_REG  (*(volatile uint32_t *)(FEAT_BASE + 0x008))
 #define FEAT_CONTROL_REG    (*(volatile uint32_t *)(FEAT_BASE + 0x00C))
 #define FEAT_FRAMENUM_REG   (*(volatile uint32_t *)(FEAT_BASE + 0x010))
+#define FEAT_DBG_FLAGS_REG  (*(volatile uint32_t *)(FEAT_BASE + 0x014))
+#define FEAT_DBG_STATE_REG  (*(volatile uint32_t *)(FEAT_BASE + 0x018))
+#define FEAT_DBG_EDGES_REG  (*(volatile uint32_t *)(FEAT_BASE + 0x01C))
+#define FEAT_DBG_TIMEOUT_REG (*(volatile uint32_t *)(FEAT_BASE + 0x020))
 #define FEAT_DATA_BASE      (FEAT_BASE + 0x100)
 #define FEAT_DATA(i)        (*(volatile uint32_t *)(FEAT_DATA_BASE + ((i) << 2)))
 
@@ -87,6 +91,27 @@ static void delay_ms(uint32_t ms) {
     while (count--);
 }
 
+static void print_dbg_snapshot(const char *tag) {
+    uint32_t flags   = FEAT_DBG_FLAGS_REG;
+    uint32_t state   = FEAT_DBG_STATE_REG;
+    uint32_t edges   = FEAT_DBG_EDGES_REG;
+    uint32_t timeout = FEAT_DBG_TIMEOUT_REG;
+
+    uart_puts("OPTFLOW: DBG ");
+    uart_puts(tag);
+    uart_puts(" flags=");
+    uart_put_int((int32_t)flags);
+    uart_puts(" state=");
+    uart_put_int((int32_t)(state & 0xF));
+    uart_puts(" pclk=");
+    uart_put_int((int32_t)(edges & 0xFFFF));
+    uart_puts(" vsync=");
+    uart_put_int((int32_t)((edges >> 16) & 0xFFFF));
+    uart_puts(" tmo=");
+    uart_put_int((int32_t)timeout);
+    uart_puts("\r\n");
+}
+
 //============================================================================
 // Main Function
 //============================================================================
@@ -102,12 +127,31 @@ int main(void) {
     // Initialize UART0 at 115200 baud
     // Baud divisor = sys_clk / baud = 27000000 / 115200 ≈ 234
     uart_init(234);
+
+    // Prove MCU execution first, before touching AHB-mapped fabric registers.
+    uart_puts("OPTFLOW: MCU boot OK\r\n");
+    uart_puts("OPTFLOW: UART ready, configuring FPGA regs...\r\n");
+
+    print_dbg_snapshot("PRE");
     
     // Set FAST threshold
     FEAT_THRESHOLD_REG = 30;
     
     // Enable detection
     FEAT_CONTROL_REG = 0x01;
+
+    delay_ms(2);
+    print_dbg_snapshot("POST");
+
+    uart_puts("OPTFLOW: AHB rb th=");
+    uart_put_int((int32_t)(FEAT_THRESHOLD_REG & 0xFF));
+    uart_puts(" ctrl=");
+    uart_put_int((int32_t)(FEAT_CONTROL_REG & 0x03));
+    uart_puts("\r\n");
+
+    if ((FEAT_CONTROL_REG & 0x01) == 0) {
+        uart_puts("OPTFLOW: WARN detect_enable readback is 0\r\n");
+    }
     
     // Startup message
     uart_puts("OPTFLOW: Optical Flow Co-Processor v1.0\r\n");
@@ -172,6 +216,7 @@ int main(void) {
             static uint16_t wait_ticks = 0;
             if (++wait_ticks >= 1000) {
                 uart_puts("OPTFLOW: Waiting for camera frames...\r\n");
+                print_dbg_snapshot("WAIT");
                 wait_ticks = 0;
             }
         }

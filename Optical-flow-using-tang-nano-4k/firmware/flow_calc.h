@@ -9,7 +9,7 @@
 #include <stdint.h>
 
 // Maximum features to process per frame
-#define MAX_FEATURES     128
+#define MAX_FEATURES     16
 
 // Maximum matching distance (squared, in pixels)
 #define MAX_MATCH_DIST2  400   // 20 pixels radius

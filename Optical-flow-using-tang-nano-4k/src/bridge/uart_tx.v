@@ -11,6 +11,7 @@ module uart_tx #(
     input  wire [7:0] tx_data,
     input  wire       tx_start,
     output reg        tx_busy,
+    output reg        tx_done,
     output reg        tx_pin
 );
 
@@ -32,24 +33,28 @@ module uart_tx #(
             state    <= IDLE;
             tx_pin   <= 1'b1;
             tx_busy  <= 1'b0;
+            tx_done  <= 1'b0;
             timer    <= 16'd0;
             bit_idx  <= 3'd0;
             shift_reg<= 8'd0;
         end else begin
+            tx_done <= 1'b0;
             case (state)
                 IDLE: begin
                     tx_pin  <= 1'b1;
+                    tx_busy <= 1'b0;
                     timer   <= 16'd0;
-                    if (tx_start && !tx_busy) begin
+                    if (tx_start) begin
                         tx_busy   <= 1'b1;
                         shift_reg <= tx_data;
+                        bit_idx   <= 3'd0;
+                        timer     <= 16'd0;
                         state     <= START;
-                    end else begin
-                        tx_busy   <= 1'b0;
                     end
                 end
                 
                 START: begin
+                    tx_busy <= 1'b1;
                     tx_pin <= 1'b0;
                     if (timer == BIT_TMR_MAX - 1) begin
                         timer   <= 16'd0;
@@ -61,6 +66,7 @@ module uart_tx #(
                 end
                 
                 DATA: begin
+                    tx_busy <= 1'b1;
                     tx_pin <= shift_reg[bit_idx];
                     if (timer == BIT_TMR_MAX - 1) begin
                         timer <= 16'd0;
@@ -75,8 +81,12 @@ module uart_tx #(
                 end
                 
                 STOP: begin
+                    tx_busy <= 1'b1;
                     tx_pin <= 1'b1;
                     if (timer == BIT_TMR_MAX - 1) begin
+                        timer   <= 16'd0;
+                        tx_busy <= 1'b0;
+                        tx_done <= 1'b1;
                         state <= IDLE;
                     end else begin
                         timer <= timer + 1'b1;

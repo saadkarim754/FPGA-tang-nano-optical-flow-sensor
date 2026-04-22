@@ -19,6 +19,7 @@ module top (
     input  wire [7:0]  dvp_d,        // 8-bit pixel data bus
     inout  wire        dvp_sda,      // SCCB data (directly to camera)
     inout  wire        dvp_scl,      // SCCB clock (directly to camera)
+    output wire        dvp_xclk,     // Camera master clock output
     
     // UART (to flight controller)
     output wire        uart_tx,      // UART0 TX
@@ -32,6 +33,16 @@ module top (
     // Can add PLL to go to 54MHz later if timing closure requires it
     wire sys_clk = clk_27m;
     wire sys_rst_n = btn_reset_n;
+
+    // Generate camera XCLK = sys_clk/2 (~13.5MHz from 27MHz source)
+    reg xclk_div2;
+    always @(posedge sys_clk or negedge sys_rst_n) begin
+        if (!sys_rst_n)
+            xclk_div2 <= 1'b0;
+        else
+            xclk_div2 <= ~xclk_div2;
+    end
+    assign dvp_xclk = xclk_div2;
     
     //========================================================================
     // Camera SCCB lines - Hardware Initializer (Bypasses MCU)
@@ -72,7 +83,7 @@ module top (
     //========================================================================
     // Line Buffer (7x7 Window Extraction)
     //========================================================================
-    wire [391:0] win_flat;
+    wire [244:0] win_flat;
     wire         win_valid;
     wire [9:0]   win_x;
     wire [8:0]   win_y;
@@ -96,13 +107,13 @@ module top (
     wire [9:0]  feat_x;
     wire [8:0]  feat_y;
     wire        feat_valid;
-    wire [4:0]  fast_threshold;
+    wire [7:0]  fast_threshold;
     wire        detect_enable;
     
     fast_detector u_fast_detector (
         .clk          (sys_clk),
         .rst_n        (sys_rst_n),
-        .threshold    (fast_threshold),
+        .threshold    (fast_threshold[4:0]),
         .enable       (detect_enable),
         .window_flat  (win_flat),
         .window_valid (win_valid),
@@ -180,6 +191,17 @@ module top (
     wire        master_hresp;         // Slave response
     
     wire        frame_irq;
+    wire [3:0]  dbg_state;
+    wire        dbg_pclk_seen;
+    wire        dbg_vsync_seen;
+    wire        dbg_timeout_hit;
+    wire [15:0] dbg_pclk_edges;
+    wire [15:0] dbg_vsync_edges;
+    wire [31:0] dbg_frame_timeout;
+
+    wire        hw_handover;
+    reg  [1:0]  hw_handover_sync_ff;
+    wire        hw_handover_sync = hw_handover_sync_ff[1];
     
     ahb_feature_slave u_ahb_slave (
         .hclk           (master_hclk),
@@ -201,7 +223,16 @@ module top (
         .detect_enable  (detect_enable),
         .frame_ready    (frame_ready),
         .frame_irq      (frame_irq),
-        .frame_number   (frame_number)
+        .frame_number   (frame_number),
+        .dbg_state      (dbg_state),
+        .dbg_handover   (hw_handover_sync),
+        .dbg_pclk_seen  (dbg_pclk_seen),
+        .dbg_vsync_seen (dbg_vsync_seen),
+        .dbg_timeout_hit(dbg_timeout_hit),
+        .dbg_pclk_edges (dbg_pclk_edges),
+        .dbg_vsync_edges(dbg_vsync_edges),
+        .dbg_frame_timeout(dbg_frame_timeout),
+        .dbg_master_hrst(master_hrst)
     );
     
     //========================================================================
@@ -211,7 +242,7 @@ module top (
     wire [7:0] hw_tx_data;
     wire       hw_tx_start;
     wire       hw_tx_busy;
-    wire       hw_handover;
+    wire       hw_tx_done;
     
     uart_tx u_hw_uart (
         .clk      (sys_clk),
@@ -219,6 +250,7 @@ module top (
         .tx_data  (hw_tx_data),
         .tx_start (hw_tx_start),
         .tx_busy  (hw_tx_busy),
+        .tx_done  (hw_tx_done),
         .tx_pin   (hw_uart_tx)
     );
     
@@ -230,13 +262,33 @@ module top (
         .uart_tx_data     (hw_tx_data),
         .uart_tx_start    (hw_tx_start),
         .uart_tx_busy     (hw_tx_busy),
+        .uart_tx_done     (hw_tx_done),
         .dvp_pclk         (dvp_pclk),
         .dvp_vsync        (dvp_vsync),
-        .handover_to_mcu  (hw_handover)
+        .handover_to_mcu  (hw_handover),
+        .dbg_state        (dbg_state),
+        .dbg_pclk_seen    (dbg_pclk_seen),
+        .dbg_vsync_seen   (dbg_vsync_seen),
+        .dbg_timeout_hit  (dbg_timeout_hit),
+        .dbg_pclk_edges   (dbg_pclk_edges),
+        .dbg_vsync_edges  (dbg_vsync_edges),
+        .dbg_frame_timeout(dbg_frame_timeout)
     );
-    
+
+    // Temporary first-pass debug mode:
+    // keep FPGA UART ownership to avoid mixed characters during handover.
+    localparam DEBUG_FORCE_FPGA_UART = 1'b1;
+
+    always @(posedge sys_clk or negedge sys_rst_n) begin
+        if (!sys_rst_n)
+            hw_handover_sync_ff <= 2'b00;
+        else
+            hw_handover_sync_ff <= {hw_handover_sync_ff[0], hw_handover};
+    end
+
     wire mcu_uart_tx;
-    assign uart_tx = hw_handover ? mcu_uart_tx : hw_uart_tx;
+    assign uart_tx = DEBUG_FORCE_FPGA_UART ? hw_uart_tx
+                                           : (hw_handover_sync ? mcu_uart_tx : hw_uart_tx);
     
     //========================================================================
     // Cortex-M3 EMPU Instantiation

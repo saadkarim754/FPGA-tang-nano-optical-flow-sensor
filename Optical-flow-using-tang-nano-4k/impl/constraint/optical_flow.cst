@@ -53,6 +53,10 @@ IO_PORT "dvp_pclk"     IO_TYPE=LVCMOS33;
 IO_PORT "dvp_vsync"    IO_TYPE=LVCMOS33;
 IO_PORT "dvp_href"     IO_TYPE=LVCMOS33;
 
+// Camera master clock output (XCLK)
+IO_LOC  "dvp_xclk"     33;
+IO_PORT "dvp_xclk"     IO_TYPE=LVCMOS33 DRIVE=8;
+
 // SCCB / I2C (All Bank 1, 3.3V)
 IO_LOC  "dvp_scl"      44;  // CAM_SCL
 IO_LOC  "dvp_sda"      46;  // CAM_SDA
@@ -63,10 +67,9 @@ IO_PORT "dvp_sda"      IO_TYPE=LVCMOS33 PULL_MODE=UP;
 // to 3.3V and GND on the Tang Nano 4K board and do not route to the FPGA.
 
 // ---- UART ----
-// Moved UART to pins 31 and 32 (Bank 0, 3.3V) which are standard general-purpose 
-// header pins free from any dedicated Flash/DONE multiplexing!
+// UART on standard general-purpose header pins (Bank 0, 3.3V).
 IO_LOC  "uart_tx"      27;
-IO_PORT "uart_tx"      IO_TYPE=LVCMOS33 DRIVE=8;
+IO_PORT "uart_tx"      IO_TYPE=LVCMOS33 DRIVE=4;
 
 IO_LOC  "uart_rx"      28;
 IO_PORT "uart_rx"      IO_TYPE=LVCMOS33 PULL_MODE=UP;

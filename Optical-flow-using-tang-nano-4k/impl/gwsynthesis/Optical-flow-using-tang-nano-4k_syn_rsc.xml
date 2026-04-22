@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="top" Register="173" Lut="309" Bsram="8" T_Register="1498(173)" T_Alu="152(0)" T_Lut="1467(309)" T_Bsram="10(8)">
- <SubModule name="u_camera_init" Register="51" Alu="5" Lut="136" T_Register="97(51)" T_Alu="5(5)" T_Lut="217(136)">
-  <SubModule name="u_i2c" Register="46" Lut="81" T_Register="46(46)" T_Lut="81(81)"/>
+<Module name="top" Register="176" Lut="309" Bsram="8" T_Register="1526(176)" T_Alu="152(0)" T_Lut="1566(309)" T_Bsram="10(8)">
+ <SubModule name="u_camera_init" Register="51" Alu="5" Lut="134" T_Register="97(51)" T_Alu="5(5)" T_Lut="214(134)">
+  <SubModule name="u_i2c" Register="46" Lut="80" T_Register="46(46)" T_Lut="80(80)"/>
  </SubModule>
  <SubModule name="u_dvp_receiver" Register="49" Lut="39" T_Register="49(49)" T_Lut="39(39)"/>
  <SubModule name="u_line_buffer" Register="235" Lut="33" T_Register="269(235)" T_Alu="32(0)" T_Lut="35(33)" T_Bsram="2(0)">
   <SubModule name="u_packed_4" Register="17" Alu="16" Lut="1" Bsram="1" T_Register="17(17)" T_Alu="16(16)" T_Lut="1(1)" T_Bsram="1(1)"/>
   <SubModule name="u_packed_2" Register="17" Alu="16" Lut="1" Bsram="1" T_Register="17(17)" T_Alu="16(16)" T_Lut="1(1)" T_Bsram="1(1)"/>
  </SubModule>
- <SubModule name="u_fast_detector" Register="92" Alu="14" Lut="195" T_Register="92(92)" T_Alu="14(14)" T_Lut="195(195)"/>
+ <SubModule name="u_fast_detector" Register="92" Alu="14" Lut="193" T_Register="92(92)" T_Alu="14(14)" T_Lut="193(193)"/>
  <SubModule name="u_frame_sync" Register="23" Alu="15" Lut="10" T_Register="23(23)" T_Alu="15(15)" T_Lut="10(10)"/>
- <SubModule name="u_feature_store" Register="603" Lut="347" T_Register="603(603)" T_Lut="347(347)"/>
- <SubModule name="u_ahb_slave" Register="53" Lut="73" T_Register="53(53)" T_Lut="73(73)"/>
+ <SubModule name="u_feature_store" Register="603" Lut="350" T_Register="603(603)" T_Lut="350(350)"/>
+ <SubModule name="u_ahb_slave" Register="61" Lut="137" T_Register="61(61)" T_Lut="137(137)"/>
  <SubModule name="u_hw_uart" Register="30" Lut="49" T_Register="30(30)" T_Lut="49(49)"/>
- <SubModule name="u_debugger" Register="109" Alu="86" Lut="193" T_Register="109(109)" T_Alu="86(86)" T_Lut="193(193)"/>
+ <SubModule name="u_debugger" Register="126" Alu="86" Lut="230" T_Register="126(126)" T_Alu="86(86)" T_Lut="230(230)"/>
 </Module>

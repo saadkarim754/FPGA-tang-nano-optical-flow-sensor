@@ -9,7 +9,11 @@
 //   0x008: THRESHOLD    (R/W) - FAST detection threshold (8-bit)
 //   0x00C: CONTROL      (R/W) - Bit 0: enable detection, Bit 1: clear IRQ
 //   0x010: FRAME_NUM    (R)   - Frame counter
-//   0x100-0x2FF: FEAT_DATA[0:127] (R) - Feature coordinates
+//   0x014: DBG_FLAGS    (R)   - Sticky/status flags for bring-up debug
+//   0x018: DBG_STATE    (R)   - FPGA debugger state machine state
+//   0x01C: DBG_EDGES    (R)   - {VSYNC edge count[15:0], PCLK edge count[15:0]}
+//   0x020: DBG_TIMEOUT  (R)   - Frame-timeout counter snapshot
+//   0x100-0x13C: FEAT_DATA[0:15] (R) - Feature coordinates
 //============================================================================
 module ahb_feature_slave (
     input  wire        hclk,
@@ -39,7 +43,18 @@ module ahb_feature_slave (
     // Frame status
     input  wire        frame_ready,      // Pulse when new frame features ready
     output reg         frame_irq,        // Interrupt to MCU
-    input  wire [15:0] frame_number
+    input  wire [15:0] frame_number,
+
+    // Debug telemetry inputs (from top-level/debugger)
+    input  wire [3:0]  dbg_state,
+    input  wire        dbg_handover,
+    input  wire        dbg_pclk_seen,
+    input  wire        dbg_vsync_seen,
+    input  wire        dbg_timeout_hit,
+    input  wire [15:0] dbg_pclk_edges,
+    input  wire [15:0] dbg_vsync_edges,
+    input  wire [31:0] dbg_frame_timeout,
+    input  wire        dbg_master_hrst
 );
 
     // AHB response: always OK, always ready (single-cycle access)
@@ -121,8 +136,22 @@ module ahb_feature_slave (
                     12'h008: hrdata <= {24'd0, fast_threshold};
                     12'h00C: hrdata <= {31'd0, detect_enable};
                     12'h010: hrdata <= {16'd0, frame_number};
+                    12'h014: hrdata <= {
+                        23'd0,
+                        dbg_master_hrst,
+                        dbg_timeout_hit,
+                        dbg_vsync_seen,
+                        dbg_pclk_seen,
+                        dbg_handover,
+                        frame_irq,
+                        new_frame_flag,
+                        detect_enable
+                    };
+                    12'h018: hrdata <= {28'd0, dbg_state};
+                    12'h01C: hrdata <= {dbg_vsync_edges, dbg_pclk_edges};
+                    12'h020: hrdata <= dbg_frame_timeout;
                     default: begin
-                        // Feature data region: 0x100-0x2FF
+                        // Feature data region: 0x100-0x13C
                         if (haddr[11:8] >= 4'h1 && haddr[11:8] <= 4'h2) begin
                             feat_read_addr <= haddr[8:2];  // Word-aligned index
                             hrdata         <= feat_read_data;

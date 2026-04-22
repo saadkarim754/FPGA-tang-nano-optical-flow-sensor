@@ -4,7 +4,7 @@
 // Buffer A: written by FAST detector (current frame)
 // Buffer B: readable by MCU via AHB (previous frame)
 // Buffers swap atomically on frame boundary (VSYNC)
-// Max 64 features per frame (reduced from 128 to save BRAM)
+// Max 16 features per frame (reduced from 128 to save BRAM)
 //
 // BRAM-OPTIMIZED: Each buffer uses separate read/write always blocks
 // with (* ram_style = "block_ram" *) to guarantee B-SRAM inference.
